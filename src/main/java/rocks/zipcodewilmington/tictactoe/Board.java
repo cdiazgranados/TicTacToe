@@ -12,11 +12,9 @@ public class Board {
 
     //Create helper function
     public Boolean column(char s) {
-        for (int i = 0; i <= 0; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (board[i][j].equals(s) && board[i][j].equals(board[i + 1][j]) && board[i][j].equals(board[i + 2][j])) {
-                    return true;
-                }
+        for (int j = 0; j < 3; j++) {
+            if (board[0][j].equals(s) && board[0][j].equals(board[1][j]) && board[0][j].equals(board[2][j])) {
+                return true;
             }
         }
         return false;
@@ -34,38 +32,25 @@ public class Board {
     public Boolean diagonal(char s) {
         if (board[0][0].equals(s) && board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2])) {
             return true;
-        } else if (board[0][2].equals(s) && board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0])) {
-            return true;
         }
-        return false;
+        return board[0][2].equals(s) && board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0]);
     }
 
 
     public Boolean isInFavorOfX() {
         char s = 'X';
 
-        if (row(s) || column(s) ||diagonal(s)) {
-            return true;
-        }
-
-        return false;
+        return row(s) || column(s) || diagonal(s);
     }
 
     public Boolean isInFavorOfO() {
         char s = 'O';
 
-        if (row(s) || column(s) ||diagonal(s)) {
-            return true;
-        }
-
-        return false;
+        return row(s) || column(s) || diagonal(s);
     }
 
     public Boolean isTie() {
-        if (!isInFavorOfX() && !isInFavorOfO()) {
-            return true;
-        }
-        return false;
+        return !isInFavorOfX() && !isInFavorOfO();
     }
 
     public String getWinner() {
@@ -76,6 +61,4 @@ public class Board {
         }
         return "";
     }
-
-
 }
