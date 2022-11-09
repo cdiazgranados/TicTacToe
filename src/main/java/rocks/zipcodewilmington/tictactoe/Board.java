@@ -10,57 +10,53 @@ public class Board {
         board = matrix;
     }
 
-    //Create helper function?
-
-    public Boolean isInFavorOfX() {
-        //column
+    //Create helper function
+    public Boolean column(char s) {
         for (int i = 0; i <= 0; i++) {
             for (int j = 0; j < 3; j++) {
-                if (board[i][j].equals('X') && board[i][j].equals(board[i + 1][j]) && board[i][j].equals(board[i + 2][j])) {
+                if (board[i][j].equals(s) && board[i][j].equals(board[i + 1][j]) && board[i][j].equals(board[i + 2][j])) {
                     return true;
                 }
             }
         }
+        return false;
+    }
 
-            //Row
-            for (int i = 0; i < 3; i++) {
-                if (board[i][0].equals('X') && board[i][0].equals(board[i][1]) && board[i][0].equals(board[i][2])) {
-                    return true;
-                }
-            }
-
-            //Diagonal
-            if (board[0][0].equals('X') && board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2])) {
-                return true;
-            } else if (board[0][2].equals('X') && board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0])) {
+    public Boolean row(char s) {
+        for (int i = 0; i < 3; i++) {
+            if (board[i][0].equals(s) && board[i][0].equals(board[i][1]) && board[i][0].equals(board[i][2])) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    public Boolean diagonal(char s) {
+        if (board[0][0].equals(s) && board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2])) {
+            return true;
+        } else if (board[0][2].equals(s) && board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0])) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public Boolean isInFavorOfX() {
+        char s = 'X';
+
+        if (row(s) || column(s) ||diagonal(s)) {
+            return true;
+        }
+
         return false;
     }
 
     public Boolean isInFavorOfO() {
-            //column
-            for (int i = 0; i <= 0; i++) {
-                for (int j = 0; j < 3; j++) {
-                    if (board[i][j].equals('O') && board[i][j].equals(board[i + 1][j]) && board[i][j].equals(board[i + 2][j])) {
-                        return true;
-                    }
-                }
-            }
+        char s = 'O';
 
-            //Row
-            for (int i = 0; i < 3; i++) {
-                if (board[i][0].equals('O') && board[i][0].equals(board[i][1]) && board[i][0].equals(board[i][2])) {
-                    return true;
-                }
-            }
-
-            //Diagonal
-            if (board[0][0].equals('O') && board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2])) {
-                return true;
-            } else if (board[0][2].equals('O') && board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0])) {
-                return true;
-            }
+        if (row(s) || column(s) ||diagonal(s)) {
+            return true;
+        }
 
         return false;
     }
